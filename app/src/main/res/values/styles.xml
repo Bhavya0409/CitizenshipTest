@@ -13,4 +13,9 @@
         <item name="android:textSize">28sp</item>
     </style>
 
+    <style name="QuestionText">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">#383a3a</item>
+    </style>
+
 </resources>

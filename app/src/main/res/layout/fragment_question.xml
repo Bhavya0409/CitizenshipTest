@@ -8,17 +8,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal">
         <TextView
+            android:id="@+id/question_number"
+            style="@style/QuestionText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1. "/>
         <TextView
-            android:id="@+id/fragment_question_question"
+            android:id="@+id/fragment_question_text"
+            style="@style/QuestionText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto"
             android:text="What is the supreme law of the land?"/>
     </LinearLayout>
+
+    <ListView
+        android:id="@+id/answer_choices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </ListView>
 
 </LinearLayout>
