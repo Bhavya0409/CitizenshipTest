@@ -28,15 +28,21 @@
     <ListView
         android:id="@+id/answer_choices"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:divider="@android:color/transparent"
+        android:layout_marginBottom="12dp"
         android:dividerHeight="10.0sp">
     </ListView>
 
-    <TextView
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/next_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Response"/>
+        style="@style/RedButton"
+        android:visibility="invisible"
+        android:enabled="false"
+        android:clickable="false"
+        android:layout_gravity="end"
+        android:text="@string/next"/>
 
 </LinearLayout>

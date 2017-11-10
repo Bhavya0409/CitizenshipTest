@@ -19,12 +19,14 @@ public class AnswersAdapter extends ArrayAdapter<String> {
     private int          correctAnswer;
     private int answerClicked = -1;
     private static List<String> answerLetters = new ArrayList<>();
+    private OnItemClickCallback callback;
 
-    public AnswersAdapter(Context context, int resource, List<String> answers, int correctAnswer) {
+    public AnswersAdapter(Context context, int resource, List<String> answers, int correctAnswer, OnItemClickCallback callback) {
         super(context, resource);
         this.context = context;
         this.answers = answers;
         this.correctAnswer = correctAnswer;
+        this.callback = callback;
         answerLetters.add("A.");
         answerLetters.add("B.");
         answerLetters.add("C.");
@@ -56,6 +58,7 @@ public class AnswersAdapter extends ArrayAdapter<String> {
                 @Override
                 public void onClick(View v) {
                     answerClicked = position;
+                    callback.onClick();
                     notifyDataSetChanged();
                 }
             });

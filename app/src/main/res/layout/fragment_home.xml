@@ -20,10 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:textColor="@color/white"
-        android:background="@drawable/round_button"
+        style="@style/RedButton"
         android:text="@string/begin_quiz"/>
 
 </LinearLayout>
