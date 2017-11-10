@@ -82,7 +82,6 @@ public class Constants {
     /**
      * Colonial Period and Independence
      */
-
     public String QUESTION_58 = "What is one reason colonists came to America?";
     public String QUESTION_59 = "Who lived in America before the Europeans arrived?";
     public String QUESTION_60 = "What group of people was taken to America and sold to slaves?";
@@ -101,4 +100,47 @@ public class Constants {
      * 1800s
      */
     public String QUESTION_71 = "What territory did the US buy from France in 1803?";
+    public String QUESTION_72 = "Name one war fought by the US in the 1800s.";
+    public String QUESTION_73 = "Name the US war between the North and South.";
+    public String QUESTION_74 = "Name one problem that led to the Civil War.";
+    public String QUESTION_75 = "What was one important thing that Abraham Lincoln did?";
+    public String QUESTION_76 = "What did the Emancipation Proclamation do?";
+    public String QUESTION_77 = "What did Susan B. Anthony do?";
+
+    /**
+     * Recent American History and Other Important Historical Information
+     */
+    public String QUESTION_78 = "Name one war fought by the US in the 1900s";
+    public String QUESTION_79 = "Who was President during the World War II?";
+    public String QUESTION_80 = "Who was President during the Great Depression and World War II?";
+    public String QUESTION_81 = "Who did the US fight in World War II?";
+    public String QUESTION_82 = "Before he was President, Eisenhower was a general in what war?";
+    public String QUESTION_83 = "During the Cold War, what was the main concern of the United States?";
+    public String QUESTION_84 = "What movement tried to end racial discrimination?";
+    public String QUESTION_85 = "What did Martin Luther King Jr. do?";
+    public String QUESTION_86 = "What major event happened on September 11, 2001, in the US?";
+    public String QUESTION_87 = "Name one American Indian tribe in the US.";
+
+    /**
+     * ---------------------    INTEGRATED CIVICS    -------------------
+     */
+
+    /**
+     * Geography
+     */
+    public String QUESTION_88 = "Name one of the two longest rivers in the US.";
+    public String QUESTION_89 = "What ocean is on the west coast of the US?";
+    public String QUESTION_90 = "What ocean is on the east coast off the US?";
+    public String QUESTION_91 = "Name one US territory.";
+    public String QUESTION_92 = "Name one state that borders Canada.";
+    public String QUESTION_93 = "Name one state that borders Mexico.";
+    public String QUESTION_94 = "What is the capital of the US?";
+    public String QUESTION_95 = "Where is the Statue of Liberty?";
+
+
+    public String QUESTION_96 = "Why does the flag have 13 stripes?";
+    public String QUESTION_97 = "Why does the flag have 50 stars?";
+    public String QUESTION_98 = "What is the name of the national anthem?";
+    public String QUESTION_99 = "When do we celebrate Independence Day?";
+    public String QUESTION_100 = "Name 2 national US holidays.";
 }
