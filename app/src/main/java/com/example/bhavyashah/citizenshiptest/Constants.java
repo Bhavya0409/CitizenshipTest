@@ -137,7 +137,9 @@ public class Constants {
     public String QUESTION_94 = "What is the capital of the US?";
     public String QUESTION_95 = "Where is the Statue of Liberty?";
 
-
+    /**
+     * Symbols
+     */
     public String QUESTION_96 = "Why does the flag have 13 stripes?";
     public String QUESTION_97 = "Why does the flag have 50 stars?";
     public String QUESTION_98 = "What is the name of the national anthem?";
