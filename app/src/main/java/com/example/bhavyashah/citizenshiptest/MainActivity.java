@@ -20,4 +20,12 @@ public class MainActivity extends AppCompatActivity {
                                                new HomeFragment(),
                                                HomeFragment.class.getSimpleName());
     }
+
+    @Override
+    public void onBackPressed() {
+        if (QuestionFragment.count > 0) {
+            QuestionFragment.count--;
+        }
+        super.onBackPressed();
+    }
 }

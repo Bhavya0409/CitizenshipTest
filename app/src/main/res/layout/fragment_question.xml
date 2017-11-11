@@ -11,7 +11,7 @@
         android:layout_marginBottom="20dp"
         android:orientation="horizontal">
         <TextView
-            android:id="@+id/question_number"
+            android:id="@+id/fragment_question_number"
             style="@style/QuestionText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
