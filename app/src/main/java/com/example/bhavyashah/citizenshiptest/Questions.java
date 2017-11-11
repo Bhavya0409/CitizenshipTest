@@ -150,12 +150,12 @@ public class Questions {
     private static String QUESTION_100 = "Name 2 national US holidays.";
 
     public static final Integer[] multipleChoiceQuestions = new Integer[]{
-            0, 2, 4, 6, 14, 17, 18, 20, 21, 23, 25, 26, 29, 38, 53, 55, 56, 61, 62, 64, 65, 68, 69, 78, 79, 81, 88, 89, 93, 98
+            0, 6, 17, 18, 20, 21, 23, 25, 38, 53, 55, 56, 61, 64, 65, 81, 98
     };
 
     public static final Integer[] oneAnswerQuestions = new Integer[]{
-            1, 3, 5, 7, 9, 10, 11, 12, 13, 15, 19, 22, 24, 27, 28, 30, 31, 32, 33, 34, 36, 37, 39, 40, 41, 42, 43, 45, 46, 47, 48, 49, 51, 52,
-            57, 58, 59, 60, 66, 67, 70, 71, 72, 73, 74, 75, 76, 77, 82, 83, 84, 85, 86, 87, 90, 91, 92, 94, 95, 96, 97
+            1, 2, 3, 4, 5, 7, 9, 10, 11, 12, 13, 14, 15, 19, 22, 24, 26, 27, 28, 29, 30, 31, 32, 33, 34, 36, 37, 39, 40, 41, 42, 43, 45, 46, 47, 48, 49, 51, 52,
+            57, 58, 59, 60, 62, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97
     };
 
     public static final Integer[] twoAnswersQuestions = new Integer[]{
@@ -165,6 +165,88 @@ public class Questions {
     public static final Integer[] threeAnswersQuestions = new Integer[]{
             63, 80
     };
+    
+    public static final String[] getAnswerChoices(int question) {
+        switch (question) {
+            case 0:
+                return new String[]{"The Constitution", "Declaration of Independence", "Articles of Confederation", "Freedom Papers"};
+            case 6:
+                return new String[]{"25", "26", "27", "28"};
+            case 17:
+                return new String[]{"200", "435", "50", "100"};
+            case 18:
+                return new String[]{"5", "6", "7", "8"};
+            case 20:
+                return new String[]{"200", "435", "50", "100"};
+            case 21:
+                return new String[]{"2", "4", "6", "8"};
+            case 23:
+                return new String[]{"The Supreme Court", "The President", "The US", "All people of the state"};
+            case 25:
+                return new String[]{"8", "6", "4", "2"};
+            case 38:
+                return new String[]{"9", "11", "7", "5"};
+            case 53:
+                return new String[]{"17", "21", "20", "18"};
+            case 55:
+                return new String[]{"March 15", "March 31", "April 15", "April 30"};
+            case 56:
+                return new String[]{"18", "17", "21", "19"};
+            case 61:
+                return new String[]{"Benjamin Franklin", "John Adams", "Thomas Jefferson", "George Washington"};
+            case 64:
+                return new String[]{"The Declaration of Independence was written.", "The Constitution was written.", "The US waged war on Great Britain.", "The first 13 colonies were created."};
+            case 65:
+                return new String[]{"1776", "1787", "1800", "1780"};
+            case 81:
+                return new String[]{"World War I", "World War II", "Revolutionary War", "Civil War"};
+            case 98:
+                return new String[]{"January 15th", "January 1st", "December 31st", "July 4th"};
+            default:
+                return new String[]{"Error", "Error", "Error", "Error"};
+        }
+    }
+
+    public static final int getCorrectAnswer(int question) {
+        switch (question) {
+            case 0:
+                return 0;
+            case 6:
+                return 2;
+            case 17:
+                return 3;
+            case 18:
+                return 1;
+            case 20:
+                return 1;
+            case 21:
+                return 0;
+            case 23:
+                return 3;
+            case 25:
+                return 2;
+            case 38:
+                return 0;
+            case 53:
+                return 3;
+            case 55:
+                return 2;
+            case 56:
+                return 0;
+            case 61:
+                return 2;
+            case 64:
+                return 1;
+            case 65:
+                return 1;
+            case 81:
+                return 1;
+            case 98:
+                return 3;
+            default:
+                return -1;
+        }
+    }
 
     public static final String[] questions = new String[]{
             QUESTION_1,

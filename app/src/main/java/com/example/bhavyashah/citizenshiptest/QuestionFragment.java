@@ -47,7 +47,8 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
     private boolean isTwoValid;
     private boolean isThreeValid;
 
-    private int QUESTION_TYPE = -1;
+    private int questionType = -1;
+    private int question     = -1;
 
     @Override
     protected int getLayoutResourceId() {
@@ -59,25 +60,25 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
         View view = super.onCreateView(inflater, container, savedInstanceState);
 
         mQuestionNumber.setText(String.format(getString(R.string.question_number), count + 1));
-        int question = HomeFragment.questionnaire.get(count);
+        question = HomeFragment.questionnaire.get(count);
         int isMultipleChoiceQuestion = Arrays.asList(Questions.multipleChoiceQuestions).indexOf(question);
         int isOneAnswerQuestion = Arrays.asList(Questions.oneAnswerQuestions).indexOf(question);
         int isTwoAnswerQuestion = Arrays.asList(Questions.twoAnswersQuestions).indexOf(question);
         int isThreeAnswerQuestion = Arrays.asList(Questions.threeAnswersQuestions).indexOf(question);
 
         if (isMultipleChoiceQuestion != -1) {
-            QUESTION_TYPE = MULTIPLE_CHOICE_QUESTION_TYPE;
+            questionType = MULTIPLE_CHOICE_QUESTION_TYPE;
         } else if (isOneAnswerQuestion != -1) {
-            QUESTION_TYPE = ONE_ANSWER_QUESTION_TYPE;
+            questionType = ONE_ANSWER_QUESTION_TYPE;
         } else if (isTwoAnswerQuestion != -1) {
-            QUESTION_TYPE = TWO_ANSWER_QUESTION_TYPE;
+            questionType = TWO_ANSWER_QUESTION_TYPE;
         } else if (isThreeAnswerQuestion != -1) {
-            QUESTION_TYPE = THREE_ANSWER_QUESTION_TYPE;
+            questionType = THREE_ANSWER_QUESTION_TYPE;
         } else {
             Toast.makeText(getActivity(), "Error displaying question.", Toast.LENGTH_SHORT).show();
         }
-        if (QUESTION_TYPE != -1) {
-            setAnswerSection(QUESTION_TYPE);
+        if (questionType != -1) {
+            setAnswerSection(questionType);
         }
         mQuestionText.setText(Questions.questions[question]);
         return view;
@@ -111,7 +112,7 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
 
     @OnTextChanged(R.id.answer_choices_user_input_1_editext)
     public void onInput1Changed(CharSequence text) {
-        if (!TextUtils.isEmpty(text)) {
+        if (!TextUtils.isEmpty(text) && text.toString().trim().length() > 0) {
             isOneValid = true;
         } else {
             isOneValid = false;
@@ -121,7 +122,7 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
 
     @OnTextChanged(R.id.answer_choices_user_input_2_editext)
     public void onInput2Changed(CharSequence text) {
-        if (!TextUtils.isEmpty(text)) {
+        if (!TextUtils.isEmpty(text) && text.toString().trim().length() > 0) {
             isTwoValid = true;
         } else {
             isTwoValid = false;
@@ -131,7 +132,7 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
 
     @OnTextChanged(R.id.answer_choices_user_input_3_editext)
     public void onInput3Changed(CharSequence text) {
-        if (!TextUtils.isEmpty(text)) {
+        if (!TextUtils.isEmpty(text) && text.toString().trim().length() > 0) {
             isThreeValid = true;
         } else {
             isThreeValid = false;
@@ -140,19 +141,19 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
     }
 
     private void setNextButton() {
-        if (QUESTION_TYPE == ONE_ANSWER_QUESTION_TYPE) {
+        if (questionType == ONE_ANSWER_QUESTION_TYPE) {
             if (isOneValid) {
                 enableButton();
             } else {
                 disableButton();
             }
-        } else if (QUESTION_TYPE == TWO_ANSWER_QUESTION_TYPE) {
+        } else if (questionType == TWO_ANSWER_QUESTION_TYPE) {
             if (isOneValid && isTwoValid) {
                 enableButton();
             } else {
                 disableButton();
             }
-        } else if (QUESTION_TYPE == THREE_ANSWER_QUESTION_TYPE) {
+        } else if (questionType == THREE_ANSWER_QUESTION_TYPE) {
             if (isOneValid && isTwoValid && isThreeValid) {
                 enableButton();
             } else {
@@ -166,11 +167,13 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
             mChoices.setVisibility(View.VISIBLE);
             mUserInputs.setVisibility(View.GONE);
 
-            String[] answers = new String[]{"The Constitution", "Declaration of Independence", "Articles of Confederation", "Freedom Papers"};
+            String[] answers = Questions.getAnswerChoices(question);
+            int correctAnswer = Questions.getCorrectAnswer(question);
+
             ArrayAdapter<String> arrayAdapter = new AnswersAdapter(getActivity(),
                                                                    android.R.layout.simple_list_item_1,
                                                                    Arrays.asList(answers),
-                                                                   0,
+                                                                   correctAnswer,
                                                                    this);
             mChoices.setAdapter(arrayAdapter);
         } else {
