@@ -2,6 +2,7 @@ package com.example.bhavyashah.citizenshiptest;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Arrays;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import butterknife.OnTextChanged;
 
 public class QuestionFragment extends BaseFragment implements OnItemClickCallback {
 
@@ -42,6 +43,12 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
     private static int TWO_ANSWER_QUESTION_TYPE      = 2;
     private static int THREE_ANSWER_QUESTION_TYPE    = 3;
 
+    private boolean isOneValid;
+    private boolean isTwoValid;
+    private boolean isThreeValid;
+
+    private int QUESTION_TYPE = -1;
+
     @Override
     protected int getLayoutResourceId() {
         return R.layout.fragment_question;
@@ -59,15 +66,18 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
         int isThreeAnswerQuestion = Arrays.asList(Questions.threeAnswersQuestions).indexOf(question);
 
         if (isMultipleChoiceQuestion != -1) {
-            setAnswerSection(MULTIPLE_CHOICE_QUESTION_TYPE);
+            QUESTION_TYPE = MULTIPLE_CHOICE_QUESTION_TYPE;
         } else if (isOneAnswerQuestion != -1) {
-            setAnswerSection(ONE_ANSWER_QUESTION_TYPE);
+            QUESTION_TYPE = ONE_ANSWER_QUESTION_TYPE;
         } else if (isTwoAnswerQuestion != -1) {
-            setAnswerSection(TWO_ANSWER_QUESTION_TYPE);
+            QUESTION_TYPE = TWO_ANSWER_QUESTION_TYPE;
         } else if (isThreeAnswerQuestion != -1) {
-            setAnswerSection(THREE_ANSWER_QUESTION_TYPE);
+            QUESTION_TYPE = THREE_ANSWER_QUESTION_TYPE;
         } else {
             Toast.makeText(getActivity(), "Error displaying question.", Toast.LENGTH_SHORT).show();
+        }
+        if (QUESTION_TYPE != -1) {
+            setAnswerSection(QUESTION_TYPE);
         }
         mQuestionText.setText(Questions.questions[question]);
         return view;
@@ -75,9 +85,19 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
 
     @Override
     public void onClick() {
+        enableButton();
+    }
+
+    private void enableButton() {
         mNextButton.setEnabled(true);
         mNextButton.setClickable(true);
         mNextButton.setVisibility(View.VISIBLE);
+    }
+
+    private void disableButton() {
+        mNextButton.setEnabled(false);
+        mNextButton.setClickable(false);
+        mNextButton.setVisibility(View.GONE);
     }
 
     @OnClick(R.id.next_button)
@@ -87,6 +107,58 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
                                                (AppCompatActivity) getActivity(),
                                                new QuestionFragment(),
                                                QuestionFragment.class.getSimpleName());
+    }
+
+    @OnTextChanged(R.id.answer_choices_user_input_1_editext)
+    public void onInput1Changed(CharSequence text) {
+        if (!TextUtils.isEmpty(text)) {
+            isOneValid = true;
+        } else {
+            isOneValid = false;
+        }
+        setNextButton();
+    }
+
+    @OnTextChanged(R.id.answer_choices_user_input_2_editext)
+    public void onInput2Changed(CharSequence text) {
+        if (!TextUtils.isEmpty(text)) {
+            isTwoValid = true;
+        } else {
+            isTwoValid = false;
+        }
+        setNextButton();
+    }
+
+    @OnTextChanged(R.id.answer_choices_user_input_3_editext)
+    public void onInput3Changed(CharSequence text) {
+        if (!TextUtils.isEmpty(text)) {
+            isThreeValid = true;
+        } else {
+            isThreeValid = false;
+        }
+        setNextButton();
+    }
+
+    private void setNextButton() {
+        if (QUESTION_TYPE == ONE_ANSWER_QUESTION_TYPE) {
+            if (isOneValid) {
+                enableButton();
+            } else {
+                disableButton();
+            }
+        } else if (QUESTION_TYPE == TWO_ANSWER_QUESTION_TYPE) {
+            if (isOneValid && isTwoValid) {
+                enableButton();
+            } else {
+                disableButton();
+            }
+        } else if (QUESTION_TYPE == THREE_ANSWER_QUESTION_TYPE) {
+            if (isOneValid && isTwoValid && isThreeValid) {
+                enableButton();
+            } else {
+                disableButton();
+            }
+        }
     }
 
     private void setAnswerSection(int questionType) {
