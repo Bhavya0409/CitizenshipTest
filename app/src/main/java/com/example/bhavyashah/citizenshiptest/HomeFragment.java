@@ -25,6 +25,7 @@ public class HomeFragment extends BaseFragment {
 
     @OnClick(R.id.begin_quiz_button)
     public void onClick() {
+        //TODO prevent duplicates
         for (int i = 0; i < NUM_QUESTIONS; i++) {
             questionnaire.add((int) (Math.random() * 100));
         }

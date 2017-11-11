@@ -91,7 +91,7 @@ public class Questions {
     private static String QUESTION_61 = "Why did the colonists fight the British?";
     private static String QUESTION_62 = "Who wrote the Declaration of Independence?";
     private static String QUESTION_63 = "When was the Declaration of Independence adopted?";
-    private static String QUESTION_64 = "There are 13 original states. Name 3.";
+    private static String QUESTION_64 = "There were 13 original states. Name 3.";
     private static String QUESTION_65 = "What happened at the Constitutional Convention?";
     private static String QUESTION_66 = "When was the Constitution written?";
     private static String QUESTION_67 = "The Federalist Papers supported the passage of the US Constitution. Name one of the writers.";
@@ -149,6 +149,23 @@ public class Questions {
     private static String QUESTION_99 = "When do we celebrate Independence Day?";
     private static String QUESTION_100 = "Name 2 national US holidays.";
 
+    public static final Integer[] multipleChoiceQuestions = new Integer[]{
+            0, 2, 4, 6, 14, 17, 18, 20, 21, 23, 25, 26, 29, 38, 53, 55, 56, 61, 62, 64, 65, 68, 69, 78, 79, 81, 88, 89, 93, 98
+    };
+
+    public static final Integer[] oneAnswerQuestions = new Integer[]{
+            1, 3, 5, 7, 9, 10, 11, 12, 13, 15, 19, 22, 24, 27, 28, 30, 31, 32, 33, 34, 36, 37, 39, 40, 41, 42, 43, 45, 46, 47, 48, 49, 51, 52,
+            57, 58, 59, 60, 66, 67, 70, 71, 72, 73, 74, 75, 76, 77, 82, 83, 84, 85, 86, 87, 90, 91, 92, 94, 95, 96, 97
+    };
+
+    public static final Integer[] twoAnswersQuestions = new Integer[]{
+            8, 16, 35, 44, 50, 54, 99
+    };
+
+    public static final Integer[] threeAnswersQuestions = new Integer[]{
+            63, 80
+    };
+
     public static final String[] questions = new String[]{
             QUESTION_1,
             QUESTION_2,
@@ -171,7 +188,7 @@ public class Questions {
             QUESTION_19,
             QUESTION_20,
             QUESTION_21,
-            QUESTION_32,
+            QUESTION_22,
             QUESTION_23,
             QUESTION_24,
             QUESTION_25,
@@ -179,6 +196,7 @@ public class Questions {
             QUESTION_27,
             QUESTION_28,
             QUESTION_29,
+            QUESTION_30,
             QUESTION_31,
             QUESTION_32,
             QUESTION_33,
@@ -198,6 +216,7 @@ public class Questions {
             QUESTION_47,
             QUESTION_48,
             QUESTION_49,
+            QUESTION_50,
             QUESTION_51,
             QUESTION_52,
             QUESTION_53,
@@ -209,7 +228,6 @@ public class Questions {
             QUESTION_59,
             QUESTION_60,
             QUESTION_61,
-            QUESTION_60,
             QUESTION_62,
             QUESTION_63,
             QUESTION_64,
