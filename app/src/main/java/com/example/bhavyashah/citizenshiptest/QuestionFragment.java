@@ -117,6 +117,7 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
     @OnClick(R.id.next_button)
     public void onNextClick() {
         count++;
+
         BaseFragment.replaceFragmentInActivity(R.id.fragment_container,
                                                (AppCompatActivity) getActivity(),
                                                new QuestionFragment(),
@@ -150,22 +151,41 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
     }
 
     private void validateUserInput() {
-        if (questionType == ONE_ANSWER_QUESTION_TYPE) {
-            String userInput1 = mUserInput1EditText.getText().toString();
-            keywords = Questions.getKeywords(question);
-            if (validateKeywords(userInput1.toLowerCase())) {
-                mUserInput1Icon.setVisibility(View.VISIBLE);
-                mUserInput1Icon.setSelected(true);
-            } else {
-                mUserInput1Icon.setVisibility(View.VISIBLE);
-                mUserInput1Icon.setSelected(false);
-            }
-        } else if (questionType == TWO_ANSWER_QUESTION_TYPE) {
+        keywords = Questions.getKeywords(question);
+        mUserInput1Icon.setVisibility(View.VISIBLE);
+        mUserInput2Icon.setVisibility(View.VISIBLE);
+        mUserInput3Icon.setVisibility(View.VISIBLE);
 
-        } else if (questionType == THREE_ANSWER_QUESTION_TYPE) {
-
+        String userInput1 = mUserInput1EditText.getText().toString();
+        if (validateKeywords(userInput1.toLowerCase())) {
+            mUserInput1Icon.setSelected(true);
         } else {
-            Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+            mUserInput1Icon.setSelected(false);
+        }
+
+        if (questionType == TWO_ANSWER_QUESTION_TYPE) {
+            String userInput2 = mUserInput2EditText.getText().toString().toLowerCase();
+
+            if (validateKeywords(userInput2)) {
+                mUserInput2Icon.setSelected(true);
+            } else {
+                mUserInput2Icon.setSelected(false);
+            }
+        } else if (questionType == THREE_ANSWER_QUESTION_TYPE) {
+            String userInput2 = mUserInput2EditText.getText().toString().toLowerCase();
+            String userInput3 = mUserInput3EditText.getText().toString().toLowerCase();
+
+            if (validateKeywords(userInput2)) {
+                mUserInput2Icon.setSelected(true);
+            } else {
+                mUserInput2Icon.setSelected(false);
+            }
+
+            if (validateKeywords(userInput3)) {
+                mUserInput3Icon.setSelected(true);
+            } else {
+                mUserInput3Icon.setSelected(false);
+            }
         }
     }
 

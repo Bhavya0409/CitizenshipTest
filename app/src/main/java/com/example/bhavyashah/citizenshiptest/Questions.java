@@ -111,7 +111,7 @@ public class Questions {
      * Recent American History and Other Important Historical Information
      */
     private static String QUESTION_78 = "Name one war fought by the US in the 1900s";
-    private static String QUESTION_79 = "Who was President during the World War II?";
+    private static String QUESTION_79 = "Who was President during the World War I?";
     private static String QUESTION_80 = "Who was President during the Great Depression and World War II?";
     private static String QUESTION_81 = "Who did the US fight in World War II?";
     private static String QUESTION_82 = "Before he was President, Eisenhower was a general in what war?";
@@ -196,6 +196,8 @@ public class Questions {
                 return new String[][]{{"speech"}, {"religion"}, {"assembly"}, {"press"}, {"petition", "government"}};
             case 7:
                 return new String[][]{{"announce", "independence"}, {"declare", "independence"}, {"united", "states", "free"}};
+            case 8:
+                return new String[][]{{"life"}, {"liberty"}, {"pursuit", "happiness"}};
             case 9:
                 return new String[][]{{"practice", "any", "religion"}};
             case 10:
@@ -210,6 +212,8 @@ public class Questions {
                 return new String[][]{{"president"}};
             case 15:
                 return new String[][]{{"congress"}, {"senate", "house", "of", "representatives"}, {"legislature"}};
+            case 16:
+                return new String[][]{{"senate"}, {"house", "representatives"}};
             case 19:
                 return new String[][]{{"cory", "booker"}, {"bob", "menendez"}};
             case 22:
@@ -233,7 +237,13 @@ public class Questions {
             case 33:
                 return new String[][]{{"president"}};
             case 34:
-                return new String[][]{{"advise", "president"}};
+                return new String[][]{{"advise"}};
+            case 35:
+                return new String[][]{{"secretary", "agriculture"}, {"secretary", "commerce"}, {"secretary", "defense"}, {"secretary", "education"},
+                        {"secretary", "energy"}, {"secretary", "health", "human", "services"}, {"secretary", "homeland", "security"},
+                        {"secretary", "housing", "urban", "development"}, {"secretary", "interior"}, {"secretary", "labor"},
+                        {"secretary", "state"}, {"secretary", "transportation"}, {"secretary", "treasury"}, {"secretary", "veteran", "affairs"},
+                        {"attorney", "general"}, {"vice", "president"}};
             case 36:
                 return new String[][]{{"review", "law"}, {"explain", "law"}, {"resolve", "dispute"}, {"decide", "law", "against", "constitution"}};
             case 37:
@@ -248,6 +258,8 @@ public class Questions {
                 return new String[][]{{"chris", "christie"}, {"phil", "murphy"}};
             case 43:
                 return new String[][]{{"trenton"}};
+            case 44:
+                return new String[][]{{"democrat"}, {"republican"}};
             case 45:
                 return new String[][]{{"republican"}};
             case 46:
@@ -260,11 +272,18 @@ public class Questions {
                 return new String[][]{{"serve", "jury"}, {"vote", "federal", "election"}};
             case 49:
                 return new String[][]{{"vote", "federal", "election"}, {"run", "federal", "office"}};
+            case 50:
+                return new String[][]{{"freedom", "expression"}, {"freedom", "speech"}, {"freedom", "assembly"}, {"freedom", "petition", "government"},
+                        {"freedom", "religion"}, {"right", "bear", "arms"}};
             case 51:
                 return new String[][]{{"united", "states"}, {"us"}, {"u.s."}, {"flag"}};
             case 52:
                 return new String[][]{{"give", "up", "loyalty", "other", "countries"},
                         {"defend", "constitution", "laws"}, {"obey", "law"}, {"serve", "military"}, {"serve", "nation"}, {"loyal", "united", "states"}};
+            case 54:
+                return new String[][]{{"vote"}, {"join", "political", "party"}, {"help", "campaign"}, {"join", "civic", "group"},
+                        {"join", "community", "group"}, {"give", "official", "opinion"}, {"call", "senators", "representatives"},
+                        {"run", "office"}, {"write", "newspaper"}};
             case 57:
                 return new String[][]{{"freedom"}, {"political", "liberty"},
                         {"religious", "freedom"}, {"economic", "opportunity"}, {"practice", "religion"}, {"escape", "persecution"}};
@@ -274,6 +293,10 @@ public class Questions {
                 return new String[][]{{"africans"}, {"people", "from", "africa"}};
             case 62:
                 return new String[][]{{"july", "4", "1776"}};
+            case 63:
+                return new String[][]{{"new", "hampshire"}, {"massachusetts"}, {"rhode", "island"},
+                        {"connecticut"}, {"new", "york"}, {"new", "jersey"}, {"pennsylvania"}, {"delaware"}, {"maryland"}, {"virginia"},
+                        {"north", "carolina"}, {"south", "carolina"}, {"georgia"}};
             case 66:
                 return new String[][]{{"madison"}, {"hamilton"}, {"jay"}, {"publius"}};
             case 67:
@@ -303,6 +326,8 @@ public class Questions {
                 return new String[][]{{"wilson"}};
             case 79:
                 return new String[][]{{"roosevelt"}};
+            case 80:
+                return new String[][]{{"japan"}, {"germany"}, {"italy"}};
             case 82:
                 return new String[][]{{"communism"}};
             case 83:
@@ -336,9 +361,12 @@ public class Questions {
             case 95:
                 return new String[][]{{"original", "colonies"}};
             case 96:
-                return new String[][]{{"one", "star", "each", "state"}, {"each", "star", "represent", "state"}, {"50", "states"}, {"fifty", "states"}};
+                return new String[][]{{"one", "each", "state"}, {"each", "star", "represent", "state"}, {"50", "states"}, {"fifty", "states"}};
             case 97:
                 return new String[][]{{"star", "spangled", "banner"}};
+            case 99:
+                return new String[][]{{"new", "year"}, {"martin", "luther", "king"}, {"president"}, {"memorial"}, {"independence"},
+                        {"labor"}, {"columbus"}, {"veterans"}, {"thanksgiving"}, {"christmas"}};
             default:
                 return new String[][]{};
         }
