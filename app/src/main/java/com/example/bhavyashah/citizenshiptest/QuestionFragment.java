@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,9 +23,10 @@ import butterknife.OnTextChanged;
 
 public class QuestionFragment extends BaseFragment implements OnItemClickCallback {
 
-    @BindView(R.id.next_button)              Button   mNextButton;
     @BindView(R.id.fragment_question_number) TextView mQuestionNumber;
     @BindView(R.id.fragment_question_text)   TextView mQuestionText;
+    @BindView(R.id.next_button)              Button   mNextButton;
+    @BindView(R.id.submit_button)            Button   mSubmitButton;
 
     @BindView(R.id.answer_choices_list)       ListView     mChoices;
     @BindView(R.id.answer_choices_user_input) LinearLayout mUserInputs;
@@ -37,11 +39,15 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
     @BindView(R.id.answer_choices_user_input_2_editext) EditText mUserInput2EditText;
     @BindView(R.id.answer_choices_user_input_3_editext) EditText mUserInput3EditText;
 
-    public static  int count                         = 0;
-    private static int MULTIPLE_CHOICE_QUESTION_TYPE = 0;
-    private static int ONE_ANSWER_QUESTION_TYPE      = 1;
-    private static int TWO_ANSWER_QUESTION_TYPE      = 2;
-    private static int THREE_ANSWER_QUESTION_TYPE    = 3;
+    @BindView(R.id.answer_choices_user_input_1_icon) ImageView mUserInput1Icon;
+    @BindView(R.id.answer_choices_user_input_2_icon) ImageView mUserInput2Icon;
+    @BindView(R.id.answer_choices_user_input_3_icon) ImageView mUserInput3Icon;
+
+    public static int count                         = 0;
+    public static int MULTIPLE_CHOICE_QUESTION_TYPE = 0;
+    public static int ONE_ANSWER_QUESTION_TYPE      = 1;
+    public static int TWO_ANSWER_QUESTION_TYPE      = 2;
+    public static int THREE_ANSWER_QUESTION_TYPE    = 3;
 
     private boolean isOneValid;
     private boolean isTwoValid;
@@ -49,6 +55,7 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
 
     private int questionType = -1;
     private int question     = -1;
+    private String[][] keywords;
 
     @Override
     protected int getLayoutResourceId() {
@@ -95,10 +102,16 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
         mNextButton.setVisibility(View.VISIBLE);
     }
 
-    private void disableButton() {
-        mNextButton.setEnabled(false);
-        mNextButton.setClickable(false);
-        mNextButton.setVisibility(View.GONE);
+    private void enableSubmitButton() {
+        mSubmitButton.setClickable(true);
+        mSubmitButton.setEnabled(true);
+        mSubmitButton.setVisibility(View.VISIBLE);
+    }
+
+    private void disableSubmitButton() {
+        mSubmitButton.setClickable(false);
+        mSubmitButton.setEnabled(false);
+        mSubmitButton.setVisibility(View.GONE);
     }
 
     @OnClick(R.id.next_button)
@@ -108,6 +121,52 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
                                                (AppCompatActivity) getActivity(),
                                                new QuestionFragment(),
                                                QuestionFragment.class.getSimpleName());
+    }
+
+    @OnClick(R.id.submit_button)
+    public void onSubmitClick() {
+        mUserInput1EditText.setEnabled(false);
+        mUserInput2EditText.setEnabled(false);
+        mUserInput3EditText.setEnabled(false);
+        validateUserInput();
+        disableSubmitButton();
+        enableButton();
+    }
+
+    private boolean validateKeywords(String input) {
+        for (int set = 0; set < keywords.length; set++) {
+            int count = 0;
+            for (int j = 0; j < keywords[set].length; j++) {
+                String keyword = keywords[set][j];
+                if (input.contains(keyword)) {
+                    count++;
+                }
+            }
+            if (count == keywords[set].length) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void validateUserInput() {
+        if (questionType == ONE_ANSWER_QUESTION_TYPE) {
+            String userInput1 = mUserInput1EditText.getText().toString();
+            keywords = Questions.getKeywords(question);
+            if (validateKeywords(userInput1.toLowerCase())) {
+                mUserInput1Icon.setVisibility(View.VISIBLE);
+                mUserInput1Icon.setSelected(true);
+            } else {
+                mUserInput1Icon.setVisibility(View.VISIBLE);
+                mUserInput1Icon.setSelected(false);
+            }
+        } else if (questionType == TWO_ANSWER_QUESTION_TYPE) {
+
+        } else if (questionType == THREE_ANSWER_QUESTION_TYPE) {
+
+        } else {
+            Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @OnTextChanged(R.id.answer_choices_user_input_1_editext)
@@ -143,21 +202,21 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
     private void setNextButton() {
         if (questionType == ONE_ANSWER_QUESTION_TYPE) {
             if (isOneValid) {
-                enableButton();
+                enableSubmitButton();
             } else {
-                disableButton();
+                disableSubmitButton();
             }
         } else if (questionType == TWO_ANSWER_QUESTION_TYPE) {
             if (isOneValid && isTwoValid) {
-                enableButton();
+                enableSubmitButton();
             } else {
-                disableButton();
+                disableSubmitButton();
             }
         } else if (questionType == THREE_ANSWER_QUESTION_TYPE) {
             if (isOneValid && isTwoValid && isThreeValid) {
-                enableButton();
+                enableSubmitButton();
             } else {
-                disableButton();
+                disableSubmitButton();
             }
         }
     }

@@ -1,10 +1,8 @@
 package com.example.bhavyashah.citizenshiptest;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.FrameLayout;
+import android.support.v7.app.AppCompatActivity;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {

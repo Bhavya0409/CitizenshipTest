@@ -1,8 +1,5 @@
 package com.example.bhavyashah.citizenshiptest;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Questions {
 
     /**
@@ -143,29 +140,216 @@ public class Questions {
     /**
      * Symbols
      */
-    private static String QUESTION_96 = "Why does the flag have 13 stripes?";
-    private static String QUESTION_97 = "Why does the flag have 50 stars?";
-    private static String QUESTION_98 = "What is the name of the national anthem?";
-    private static String QUESTION_99 = "When do we celebrate Independence Day?";
+    private static String QUESTION_96  = "Why does the flag have 13 stripes?";
+    private static String QUESTION_97  = "Why does the flag have 50 stars?";
+    private static String QUESTION_98  = "What is the name of the national anthem?";
+    private static String QUESTION_99  = "When do we celebrate Independence Day?";
     private static String QUESTION_100 = "Name 2 national US holidays.";
 
+    /**
+     * IDs of all the questions that are MC questions
+     */
     public static final Integer[] multipleChoiceQuestions = new Integer[]{
             0, 6, 17, 18, 20, 21, 23, 25, 38, 53, 55, 56, 61, 64, 65, 81, 98
     };
 
+    /**
+     * IDs of all the questions that require one user input
+     */
     public static final Integer[] oneAnswerQuestions = new Integer[]{
             1, 2, 3, 4, 5, 7, 9, 10, 11, 12, 13, 14, 15, 19, 22, 24, 26, 27, 28, 29, 30, 31, 32, 33, 34, 36, 37, 39, 40, 41, 42, 43, 45, 46, 47, 48, 49, 51, 52,
             57, 58, 59, 60, 62, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97
     };
 
+    /**
+     * IDs of all the questions that require two user inputs
+     */
     public static final Integer[] twoAnswersQuestions = new Integer[]{
             8, 16, 35, 44, 50, 54, 99
     };
 
+    /**
+     * IDs of all the questions that require three user inputs
+     */
     public static final Integer[] threeAnswersQuestions = new Integer[]{
             63, 80
     };
-    
+
+    /**
+     * If the question is a user-input question, return a 2D array of keywords for a certain question
+     * since all the keywords in one set have to match, but only one set has to match (OR the sets, but AND everything inside the sets)
+     *
+     * @param question question ID
+     * @return return 2D array of keywords
+     */
+    public static final String[][] getKeywords(int question) {
+        switch (question) {
+            case 1:
+                return new String[][]{{"set", "government"}, {"define", "government"}, {"protect", "basic", "right", "americans"}};
+            case 2:
+                return new String[][]{{"we", "the", "people"}};
+            case 3:
+                return new String[][]{{"change"}, {"addition"}};
+            case 4:
+                return new String[][]{{"bill", "of", "rights"}};
+            case 5:
+                return new String[][]{{"speech"}, {"religion"}, {"assembly"}, {"press"}, {"petition", "government"}};
+            case 7:
+                return new String[][]{{"announce", "independence"}, {"declare", "independence"}, {"united", "states", "free"}};
+            case 9:
+                return new String[][]{{"practice", "any", "religion"}};
+            case 10:
+                return new String[][]{{"capitalist", "economy"}, {"market", "economy"}};
+            case 11:
+                return new String[][]{{"everyone", "follow", "law"}, {"leader", "obey", "law"}, {"government", "obey", "law"}, {"no", "one", "above", "law"}};
+            case 12:
+                return new String[][]{{"congress"}, {"legislative"}, {"president"}, {"executive"}, {"courts"}, {"judicial"}};
+            case 13:
+                return new String[][]{{"checks", "and", "balances"}, {"separation", "of", "powers"}};
+            case 14:
+                return new String[][]{{"president"}};
+            case 15:
+                return new String[][]{{"congress"}, {"senate", "house", "of", "representatives"}, {"legislature"}};
+            case 19:
+                return new String[][]{{"cory", "booker"}, {"bob", "menendez"}};
+            case 22:
+                return new String[][]{{"frank", "pallone"}, {"leonard", "lance"}, {"bonnie", "watson", "coleman"}};
+            case 24:
+                return new String[][]{{"state", "population"}, {"more", "people"}, {"some", "states", "more", "people"}};
+            case 26:
+                return new String[][]{{"november"}};
+            case 27:
+                return new String[][]{{"trump"}};
+            case 28:
+                return new String[][]{{"pence"}};
+            case 29:
+                return new String[][]{{"vice", "president"}};
+            case 30:
+                return new String[][]{{"speaker", "of", "house"}};
+            case 31:
+                return new String[][]{{"president"}};
+            case 32:
+                return new String[][]{{"president"}};
+            case 33:
+                return new String[][]{{"president"}};
+            case 34:
+                return new String[][]{{"advise", "president"}};
+            case 36:
+                return new String[][]{{"review", "law"}, {"explain", "law"}, {"resolve", "dispute"}, {"decide", "law", "against", "constitution"}};
+            case 37:
+                return new String[][]{{"supreme", "court"}};
+            case 39:
+                return new String[][]{{"john", "roberts"}};
+            case 40:
+                return new String[][]{{"print", "money"}, {"declare", "war"}, {"create", "army"}, {"make", "treaties"}};
+            case 41:
+                return new String[][]{{"school", "education"}, {"protection"}, {"safety"}, {"driver", "license"}, {"zoning", "land", "use"}};
+            case 42:
+                return new String[][]{{"chris", "christie"}, {"phil", "murphy"}};
+            case 43:
+                return new String[][]{{"trenton"}};
+            case 45:
+                return new String[][]{{"republican"}};
+            case 46:
+                return new String[][]{{"paul", "ryan"}};
+            case 47:
+                return new String[][]{{"18", "older", "vote"}, {"eighteen", "older", "vote"},
+                        {"don't", "pay", "to", "vote"}, {"any", "citizen", "can", "vote"}, {"women", "men", "can", "vote"},
+                        {"male", "citizen", "any", "race"}};
+            case 48:
+                return new String[][]{{"serve", "jury"}, {"vote", "federal", "election"}};
+            case 49:
+                return new String[][]{{"vote", "federal", "election"}, {"run", "federal", "office"}};
+            case 51:
+                return new String[][]{{"united", "states"}, {"us"}, {"u.s."}, {"flag"}};
+            case 52:
+                return new String[][]{{"give", "up", "loyalty", "other", "countries"},
+                        {"defend", "constitution", "laws"}, {"obey", "law"}, {"serve", "military"}, {"serve", "nation"}, {"loyal", "united", "states"}};
+            case 57:
+                return new String[][]{{"freedom"}, {"political", "liberty"},
+                        {"religious", "freedom"}, {"economic", "opportunity"}, {"practice", "religion"}, {"escape", "persecution"}};
+            case 58:
+                return new String[][]{{"american", "indians"}, {"native", "americans"}};
+            case 59:
+                return new String[][]{{"africans"}, {"people", "from", "africa"}};
+            case 62:
+                return new String[][]{{"july", "4", "1776"}};
+            case 66:
+                return new String[][]{{"madison"}, {"hamilton"}, {"jay"}, {"publius"}};
+            case 67:
+                return new String[][]{{"diplomat"}, {"oldest", "constitutional", "convention"}, {"first", "postmaster", "general"},
+                        {"write", "poor", "richard", "almanac"}, {"first", "free", "libraries"}};
+            case 68:
+                return new String[][]{{"washington"}};
+            case 69:
+                return new String[][]{{"washington"}};
+            case 70:
+                return new String[][]{{"louisiana"}};
+            case 71:
+                return new String[][]{{"war", "1812"}, {"mexican", "american"}, {"civil"}, {"spanish", "american"}};
+            case 72:
+                return new String[][]{{"civil"}, {"between", "states"}};
+            case 73:
+                return new String[][]{{"slavery"}, {"economic"}, {"states", "rights"}};
+            case 74:
+                return new String[][]{{"free", "slaves"}, {"saved", "union"}, {"led", "united", "states", "during", "civil", "war"}};
+            case 75:
+                return new String[][]{{"free", "slaves"}};
+            case 76:
+                return new String[][]{{"fought", "women", "rights"}, {"fought", "civil", "rights"}};
+            case 77:
+                return new String[][]{{"world"}, {"korean"}, {"vietnam"}, {"gulf"}};
+            case 78:
+                return new String[][]{{"wilson"}};
+            case 79:
+                return new String[][]{{"roosevelt"}};
+            case 82:
+                return new String[][]{{"communism"}};
+            case 83:
+                return new String[][]{{"civil", "rights"}};
+            case 84:
+                return new String[][]{{"fought", "civil", "rights"}, {"worked", "for", "equality"}};
+            case 85:
+                return new String[][]{{"terrorists"}, {"terrorism"}};
+            case 86:
+                return new String[][]{{"cherokee"}, {"navajo"}, {"sioux"}, {"chippewa"}, {"choctaw"},
+                        {"pueblo"}, {"apache"}, {"iroquois"}, {"creek"}, {"blackfeet"}, {"seminole"},
+                        {"cheyenne"}, {"arawak"}, {"shawnee"}, {"mohegan"}, {"huron"}, {"oneida"},
+                        {"lakota"}, {"crow"}, {"teton"}, {"hopi"}, {"inuit"}};
+            case 87:
+                return new String[][]{{"missouri"}, {"mississippi"}};
+            case 88:
+                return new String[][]{{"pacific"}};
+            case 89:
+                return new String[][]{{"atlantic"}};
+            case 90:
+                return new String[][]{{"puerto", "rico"}, {"virgin", "islands"}, {"american", "samoa"}, {"northern", "mariana", "islands", "guam"}};
+            case 91:
+                return new String[][]{{"maine"}, {"new", "hampshire"}, {"vermont"}, {"new", "york"},
+                        {"pennsylvania"}, {"ohio"}, {"michigan"}, {"minnesota"}, {"north", "dakota"}, {"montana"}, {"idaho"}, {"washington"}, {"alaska"}};
+            case 92:
+                return new String[][]{{"california"}, {"arizona"}, {"new", "mexico"}, {"texas"}};
+            case 93:
+                return new String[][]{{"washington", "d", "c"}};
+            case 94:
+                return new String[][]{{"new", "york"}, {"liberty", "island"}, {"new", "jersey"}};
+            case 95:
+                return new String[][]{{"original", "colonies"}};
+            case 96:
+                return new String[][]{{"one", "star", "each", "state"}, {"each", "star", "represent", "state"}, {"50", "states"}, {"fifty", "states"}};
+            case 97:
+                return new String[][]{{"star", "spangled", "banner"}};
+            default:
+                return new String[][]{};
+        }
+    }
+
+    /**
+     * If the question if a multiple-choice question, return potential answer choices depending on the question
+     *
+     * @param question question ID
+     * @return answer choices
+     */
     public static final String[] getAnswerChoices(int question) {
         switch (question) {
             case 0:
@@ -207,6 +391,12 @@ public class Questions {
         }
     }
 
+    /**
+     * If the question is a multiple-choice question return the position of the correct answer
+     *
+     * @param question question ID
+     * @return the position of the correct answer for a question
+     */
     public static final int getCorrectAnswer(int question) {
         switch (question) {
             case 0:
@@ -248,6 +438,9 @@ public class Questions {
         }
     }
 
+    /**
+     * String array of all the questions
+     */
     public static final String[] questions = new String[]{
             QUESTION_1,
             QUESTION_2,

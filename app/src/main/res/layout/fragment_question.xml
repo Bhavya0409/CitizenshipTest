@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
@@ -14,15 +15,12 @@
             android:id="@+id/fragment_question_number"
             style="@style/QuestionText"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1. "/>
+            android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/fragment_question_text"
             style="@style/QuestionText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto"
-            android:text="What is the supreme law of the land?"/>
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
     <FrameLayout
@@ -59,8 +57,17 @@
 
                 <EditText
                     android:id="@+id/answer_choices_user_input_1_editext"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:id="@+id/answer_choices_user_input_1_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/answer_icon"/>
             </LinearLayout>
 
             <LinearLayout
@@ -77,8 +84,17 @@
 
                 <EditText
                     android:id="@+id/answer_choices_user_input_2_editext"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:id="@+id/answer_choices_user_input_2_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/answer_icon"/>
             </LinearLayout>
 
             <LinearLayout
@@ -94,8 +110,17 @@
 
                 <EditText
                     android:id="@+id/answer_choices_user_input_3_editext"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:id="@+id/answer_choices_user_input_3_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/answer_icon"/>
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>
@@ -105,10 +130,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/RedButton"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:enabled="false"
         android:clickable="false"
         android:layout_gravity="end"
         android:text="@string/next"/>
+
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        style="@style/RedButton"
+        android:enabled="false"
+        android:clickable="false"
+        android:layout_gravity="end"
+        android:text="@string/submit"/>
 
 </LinearLayout>
