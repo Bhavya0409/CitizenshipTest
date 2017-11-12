@@ -117,11 +117,14 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
     @OnClick(R.id.next_button)
     public void onNextClick() {
         count++;
-
+        BaseFragment fragmentToOpen = new QuestionFragment();
+        if (count == HomeFragment.NUM_QUESTIONS) {
+            fragmentToOpen = new CompleteFragment();
+        }
         BaseFragment.replaceFragmentInActivity(R.id.fragment_container,
                                                (AppCompatActivity) getActivity(),
-                                               new QuestionFragment(),
-                                               QuestionFragment.class.getSimpleName());
+                                               fragmentToOpen,
+                                               fragmentToOpen.getClass().getSimpleName());
     }
 
     @OnClick(R.id.submit_button)

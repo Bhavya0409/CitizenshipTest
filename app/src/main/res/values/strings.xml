@@ -5,4 +5,6 @@
     <string name="next">NEXT</string>
     <string name="submit">SUBMIT</string>
     <string name="question_number">%1$d.&#160;</string>
+    <string name="congratulations">Congratulations, you completed the Civics Test!</string>
+    <string name="retake_quiz">Click here to retake the quiz</string>
 </resources>

@@ -13,7 +13,7 @@ import butterknife.OnClick;
 
 public class HomeFragment extends BaseFragment {
 
-    private static final int NUM_QUESTIONS = 20;
+    public static final int NUM_QUESTIONS = 20;
     public static List<Integer> questionnaire;
 
     @Override

@@ -315,7 +315,7 @@ public class Questions {
             case 73:
                 return new String[][]{{"slavery"}, {"economic"}, {"states", "rights"}};
             case 74:
-                return new String[][]{{"free", "slaves"}, {"saved", "union"}, {"led", "united", "states", "during", "civil", "war"}};
+                return new String[][]{{"free", "slaves"},{"freedom", "slaves"}, {"saved", "union"}, {"led", "united", "states", "during", "civil", "war"}};
             case 75:
                 return new String[][]{{"free", "slaves"}};
             case 76:
