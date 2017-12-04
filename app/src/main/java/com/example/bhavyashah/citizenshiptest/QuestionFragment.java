@@ -68,18 +68,14 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
 
         mQuestionNumber.setText(String.format(getString(R.string.question_number), count + 1));
         question = HomeFragment.questionnaire.get(count);
-        int isMultipleChoiceQuestion = Arrays.asList(Questions.multipleChoiceQuestions).indexOf(question);
-        int isOneAnswerQuestion = Arrays.asList(Questions.oneAnswerQuestions).indexOf(question);
-        int isTwoAnswerQuestion = Arrays.asList(Questions.twoAnswersQuestions).indexOf(question);
-        int isThreeAnswerQuestion = Arrays.asList(Questions.threeAnswersQuestions).indexOf(question);
 
-        if (isMultipleChoiceQuestion != -1) {
+        if (Arrays.asList(Questions.multipleChoiceQuestions).indexOf(question) != -1) {
             questionType = MULTIPLE_CHOICE_QUESTION_TYPE;
-        } else if (isOneAnswerQuestion != -1) {
+        } else if (Arrays.asList(Questions.oneAnswerQuestions).indexOf(question) != -1) {
             questionType = ONE_ANSWER_QUESTION_TYPE;
-        } else if (isTwoAnswerQuestion != -1) {
+        } else if (Arrays.asList(Questions.twoAnswersQuestions).indexOf(question) != -1) {
             questionType = TWO_ANSWER_QUESTION_TYPE;
-        } else if (isThreeAnswerQuestion != -1) {
+        } else if (Arrays.asList(Questions.threeAnswersQuestions).indexOf(question) != -1) {
             questionType = THREE_ANSWER_QUESTION_TYPE;
         } else {
             Toast.makeText(getActivity(), "Error displaying question.", Toast.LENGTH_SHORT).show();
@@ -112,29 +108,6 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
         mSubmitButton.setClickable(false);
         mSubmitButton.setEnabled(false);
         mSubmitButton.setVisibility(View.GONE);
-    }
-
-    @OnClick(R.id.next_button)
-    public void onNextClick() {
-        count++;
-        BaseFragment fragmentToOpen = new QuestionFragment();
-        if (count == HomeFragment.NUM_QUESTIONS) {
-            fragmentToOpen = new CompleteFragment();
-        }
-        BaseFragment.replaceFragmentInActivity(R.id.fragment_container,
-                                               (AppCompatActivity) getActivity(),
-                                               fragmentToOpen,
-                                               fragmentToOpen.getClass().getSimpleName());
-    }
-
-    @OnClick(R.id.submit_button)
-    public void onSubmitClick() {
-        mUserInput1EditText.setEnabled(false);
-        mUserInput2EditText.setEnabled(false);
-        mUserInput3EditText.setEnabled(false);
-        validateUserInput();
-        disableSubmitButton();
-        enableButton();
     }
 
     private boolean validateKeywords(String input) {
@@ -192,36 +165,6 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
         }
     }
 
-    @OnTextChanged(R.id.answer_choices_user_input_1_editext)
-    public void onInput1Changed(CharSequence text) {
-        if (!TextUtils.isEmpty(text) && text.toString().trim().length() > 0) {
-            isOneValid = true;
-        } else {
-            isOneValid = false;
-        }
-        setNextButton();
-    }
-
-    @OnTextChanged(R.id.answer_choices_user_input_2_editext)
-    public void onInput2Changed(CharSequence text) {
-        if (!TextUtils.isEmpty(text) && text.toString().trim().length() > 0) {
-            isTwoValid = true;
-        } else {
-            isTwoValid = false;
-        }
-        setNextButton();
-    }
-
-    @OnTextChanged(R.id.answer_choices_user_input_3_editext)
-    public void onInput3Changed(CharSequence text) {
-        if (!TextUtils.isEmpty(text) && text.toString().trim().length() > 0) {
-            isThreeValid = true;
-        } else {
-            isThreeValid = false;
-        }
-        setNextButton();
-    }
-
     private void setNextButton() {
         if (questionType == ONE_ANSWER_QUESTION_TYPE) {
             if (isOneValid) {
@@ -276,5 +219,58 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
                 Toast.makeText(getActivity(), "Error setting answer section", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    @OnClick(R.id.next_button)
+    public void onNextClick() {
+        count++;
+        BaseFragment fragmentToOpen = new QuestionFragment();
+        if (count == HomeFragment.NUM_QUESTIONS) {
+            fragmentToOpen = new CompleteFragment();
+        }
+        BaseFragment.replaceFragmentInActivity(R.id.fragment_container,
+                                               (AppCompatActivity) getActivity(),
+                                               fragmentToOpen,
+                                               fragmentToOpen.getClass().getSimpleName());
+    }
+
+    @OnClick(R.id.submit_button)
+    public void onSubmitClick() {
+        mUserInput1EditText.setEnabled(false);
+        mUserInput2EditText.setEnabled(false);
+        mUserInput3EditText.setEnabled(false);
+        validateUserInput();
+        disableSubmitButton();
+        enableButton();
+    }
+
+    @OnTextChanged(R.id.answer_choices_user_input_1_editext)
+    public void onInput1Changed(CharSequence text) {
+        if (!TextUtils.isEmpty(text) && text.toString().trim().length() > 0) {
+            isOneValid = true;
+        } else {
+            isOneValid = false;
+        }
+        setNextButton();
+    }
+
+    @OnTextChanged(R.id.answer_choices_user_input_2_editext)
+    public void onInput2Changed(CharSequence text) {
+        if (!TextUtils.isEmpty(text) && text.toString().trim().length() > 0) {
+            isTwoValid = true;
+        } else {
+            isTwoValid = false;
+        }
+        setNextButton();
+    }
+
+    @OnTextChanged(R.id.answer_choices_user_input_3_editext)
+    public void onInput3Changed(CharSequence text) {
+        if (!TextUtils.isEmpty(text) && text.toString().trim().length() > 0) {
+            isThreeValid = true;
+        } else {
+            isThreeValid = false;
+        }
+        setNextButton();
     }
 }
