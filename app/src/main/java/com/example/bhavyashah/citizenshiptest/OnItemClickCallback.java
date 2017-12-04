@@ -2,6 +2,6 @@ package com.example.bhavyashah.citizenshiptest;
 
 public interface OnItemClickCallback {
 
-    void onClick();
+    void onClick(boolean isCorrect);
 
 }

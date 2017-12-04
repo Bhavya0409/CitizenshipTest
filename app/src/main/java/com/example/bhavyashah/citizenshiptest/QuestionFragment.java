@@ -44,6 +44,7 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
     @BindView(R.id.answer_choices_user_input_3_icon) ImageView mUserInput3Icon;
 
     public static int count                         = 0;
+    public static int numCorrect                    = 0;
     public static int MULTIPLE_CHOICE_QUESTION_TYPE = 0;
     public static int ONE_ANSWER_QUESTION_TYPE      = 1;
     public static int TWO_ANSWER_QUESTION_TYPE      = 2;
@@ -52,6 +53,10 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
     private boolean isOneValid;
     private boolean isTwoValid;
     private boolean isThreeValid;
+
+    private boolean isOneCorrect;
+    private boolean isTwoCorrect;
+    private boolean isThreeCorrect;
 
     private int questionType = -1;
     private int question     = -1;
@@ -65,6 +70,7 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
+        //TODO refactor to use arraylists and for loops instead of checking isOne, isTwo, isThree everywhere
 
         mQuestionNumber.setText(String.format(getString(R.string.question_number), count + 1));
         question = HomeFragment.questionnaire.get(count);
@@ -88,8 +94,11 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
     }
 
     @Override
-    public void onClick() {
+    public void onClick(boolean isCorrect) {
         enableButton();
+        if (isCorrect) {
+            numCorrect++;
+        }
     }
 
     private void enableButton() {
@@ -132,8 +141,8 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
         mUserInput2Icon.setVisibility(View.VISIBLE);
         mUserInput3Icon.setVisibility(View.VISIBLE);
 
-        String userInput1 = mUserInput1EditText.getText().toString();
-        if (validateKeywords(userInput1.toLowerCase())) {
+        if (validateKeywords(mUserInput1EditText.getText().toString().toLowerCase())) {
+            isOneCorrect = true;
             mUserInput1Icon.setSelected(true);
         } else {
             mUserInput1Icon.setSelected(false);
@@ -143,6 +152,7 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
             String userInput2 = mUserInput2EditText.getText().toString().toLowerCase();
 
             if (validateKeywords(userInput2)) {
+                isTwoCorrect = true;
                 mUserInput2Icon.setSelected(true);
             } else {
                 mUserInput2Icon.setSelected(false);
@@ -152,16 +162,30 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
             String userInput3 = mUserInput3EditText.getText().toString().toLowerCase();
 
             if (validateKeywords(userInput2)) {
+                isTwoCorrect = true;
                 mUserInput2Icon.setSelected(true);
             } else {
                 mUserInput2Icon.setSelected(false);
             }
 
             if (validateKeywords(userInput3)) {
+                isThreeCorrect = true;
                 mUserInput3Icon.setSelected(true);
             } else {
                 mUserInput3Icon.setSelected(false);
             }
+        }
+
+        updateNumCorrect();
+    }
+
+    private void updateNumCorrect() {
+        if (questionType == ONE_ANSWER_QUESTION_TYPE && isOneCorrect) {
+            numCorrect++;
+        } else if (questionType == TWO_ANSWER_QUESTION_TYPE && isOneCorrect && isTwoCorrect) {
+            numCorrect++;
+        } else if (questionType == THREE_ANSWER_QUESTION_TYPE && isOneCorrect && isTwoCorrect && isThreeCorrect) {
+            numCorrect++;
         }
     }
 

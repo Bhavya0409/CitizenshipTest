@@ -21,9 +21,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (QuestionFragment.count > 0) {
-            QuestionFragment.count--;
-        }
-        super.onBackPressed();
+        //TODO fix back button
+//        if (QuestionFragment.count > 0) {
+//            QuestionFragment.count--;
+//        }
+//        super.onBackPressed();
     }
 }

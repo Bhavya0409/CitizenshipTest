@@ -20,6 +20,7 @@ public class AnswersAdapter extends ArrayAdapter<String> {
     private int answerClicked = -1;
     private static List<String> answerLetters = new ArrayList<>();
     private OnItemClickCallback callback;
+    private boolean isCorrect;
 
     public AnswersAdapter(Context context, int resource, List<String> answers, int correctAnswer, OnItemClickCallback callback) {
         super(context, resource);
@@ -46,19 +47,21 @@ public class AnswersAdapter extends ArrayAdapter<String> {
             rowView.setOnClickListener(null);
             if (position == correctAnswer) {
                 //if the view being loaded is the correct answer, set background to correct
+                isCorrect = true;
                 rowView.setBackground(context.getResources().getDrawable(R.drawable.answer_choice_background_correct));
-            } else if (position == answerClicked && position != correctAnswer) {
+            } else if (position == answerClicked) {
                 //if the view being loaded was the selected answer, but it is incorrect, set background to incorrect
                 rowView.setBackground(context.getResources().getDrawable(R.drawable.answer_choice_background_incorrect));
                 questionLetter.setTextColor(context.getResources().getColor(R.color.white));
                 questionText.setTextColor(context.getResources().getColor(R.color.white));
+                isCorrect = false;
             } //else use the default background
         } else {
             rowView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     answerClicked = position;
-                    callback.onClick();
+                    callback.onClick(isCorrect);
                     notifyDataSetChanged();
                 }
             });

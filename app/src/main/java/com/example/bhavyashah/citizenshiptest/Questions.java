@@ -69,7 +69,7 @@ public class Questions {
     private static String QUESTION_50 = "Name one right only for US citizens.";
     private static String QUESTION_51 = "What are 2 rights of everyone living in the US?";
     private static String QUESTION_52 = "What do we show loyalty to when we say the Pledge of Allegiance?";
-    private static String QUESTION_53 = "What is one promise you make when you become a US citizen";
+    private static String QUESTION_53 = "What is one promise you make when you become a US citizen?";
     private static String QUESTION_54 = "How old do citizens have to be to vote for President?";
     private static String QUESTION_55 = "What are 2 ways that Americans can participate in their democracy?";
     private static String QUESTION_56 = "When is the last day you can send in federal income tax forms?";
@@ -201,7 +201,7 @@ public class Questions {
             case 9:
                 return new String[][]{{"practice", "any", "religion"}};
             case 10:
-                return new String[][]{{"capitalist", "economy"}, {"market", "economy"}};
+                return new String[][]{{"capitalist", "economy"}, {"market", "economy"}, {"capitalism"}};
             case 11:
                 return new String[][]{{"everyone", "follow", "law"}, {"leader", "obey", "law"}, {"government", "obey", "law"}, {"no", "one", "above", "law"}};
             case 12:
@@ -325,7 +325,7 @@ public class Questions {
             case 78:
                 return new String[][]{{"wilson"}};
             case 79:
-                return new String[][]{{"roosevelt"}};
+                return new String[][]{{"roosevelt"}, {"fdr"}};
             case 80:
                 return new String[][]{{"japan"}, {"germany"}, {"italy"}};
             case 82:
