@@ -1,6 +1,11 @@
 package com.example.bhavyashah.citizenshiptest;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.speech.tts.TextToSpeech;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -15,22 +20,31 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 
+import static android.app.Activity.RESULT_OK;
+
 public class QuestionFragment extends BaseFragment implements OnItemClickCallback {
 
-    private static final String ONE = "one";
-    private static final String TWO = "two";
-    private static final String THREE = "three";
+    private static final String ONE                   = "one";
+    private static final String TWO                   = "two";
+    private static final String THREE                 = "three";
+    private static final String QUESTION_TEXT         = "question";
+    private static final int    REQ_CODE_SPEECH_INPUT = 100;
 
-    @BindView(R.id.fragment_question_number) protected TextView mQuestionNumber;
-    @BindView(R.id.fragment_question_text) protected   TextView mQuestionText;
-    @BindView(R.id.next_button) protected              Button   mNextButton;
-    @BindView(R.id.submit_button) protected            Button   mSubmitButton;
+    @BindView(R.id.fragment_question_number) protected TextView  mQuestionNumber;
+    @BindView(R.id.fragment_question_text) protected   TextView  mQuestionText;
+    @BindView(R.id.next_button) protected              Button    mNextButton;
+    @BindView(R.id.submit_button) protected            Button    mSubmitButton;
+    @BindView(R.id.mic_1) protected                    ImageView mMic1Icon;
+    @BindView(R.id.mic_2) protected                    ImageView mMic2Icon;
+    @BindView(R.id.mic_3) protected                    ImageView mMic3Icon;
 
     @BindView(R.id.answer_choices_list) protected       ListView     mChoices;
     @BindView(R.id.answer_choices_user_input) protected LinearLayout mUserInputs;
@@ -68,6 +82,7 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
 
     private int questionType = -1;
     private int question     = -1;
+    private int micOptionClicked = 1;
     private String[][] keywords;
 
     @Override
@@ -104,7 +119,9 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
         if (questionType != -1) {
             setAnswerSection(questionType);
         }
-        mQuestionText.setText(Questions.questions[question]);
+        String questionText = Questions.questions[question];
+        MainActivity.textToSpeech.speak(questionText, TextToSpeech.QUEUE_FLUSH, null, null);
+        mQuestionText.setText(questionText);
         return view;
     }
 
@@ -270,6 +287,69 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
         }
     }
 
+    @OnClick({R.id.mic_1, R.id.mic_2, R.id.mic_3})
+    public void onMicClick(View view) {
+        if (MainActivity.textToSpeech.isSpeaking()) {
+            MainActivity.textToSpeech.stop();
+        }
+
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, getString(R.string.say_something));
+
+        switch (view.getId()) {
+            case R.id.mic_1:
+                micOptionClicked = 1;
+                break;
+            case R.id.mic_2:
+                micOptionClicked = 2;
+                break;
+            case R.id.mic_3:
+                micOptionClicked = 3;
+                break;
+            default:
+                micOptionClicked = 1;
+                break;
+        }
+        try {
+            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
+        } catch (ActivityNotFoundException a) {
+            Toast.makeText(getActivity(),
+                           R.string.device_not_supported,
+                           Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case REQ_CODE_SPEECH_INPUT: {
+                if (resultCode == RESULT_OK && data != null) {
+                    ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    switch (micOptionClicked) {
+                        case 1:
+                            mUserInput1EditText.setText(result.get(0));
+                            break;
+                        case 2:
+                            mUserInput2EditText.setText(result.get(0));
+                            break;
+                        case 3:
+                            mUserInput3EditText.setText(result.get(0));
+                            break;
+                        default:
+                            Snackbar.make(mQuestionText, R.string.error_saving_input, Snackbar.LENGTH_SHORT).show();
+
+                    }
+                }
+                break;
+            }
+
+        }
+    }
+
     @OnClick(R.id.next_button)
     public void onNextClick() {
         count++;
@@ -288,6 +368,9 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
         mUserInput1EditText.setEnabled(false);
         mUserInput2EditText.setEnabled(false);
         mUserInput3EditText.setEnabled(false);
+        mMic1Icon.setVisibility(View.GONE);
+        mMic2Icon.setVisibility(View.GONE);
+        mMic3Icon.setVisibility(View.GONE);
         validateUserInput();
         disableSubmitButton();
         enableNextButton();

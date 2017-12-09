@@ -9,4 +9,7 @@
     <string name="retake_quiz">Click here to retake the quiz</string>
     <string name="final_score">You scored: %1$d/%2$d</string>
     <string name="incorrect_answer_text">Sorry that\'s incorrect. The correct answer is %1$s of the following:</string>
+    <string name="say_something">Say something</string>
+    <string name="device_not_supported">Sorry! Your device doesn\'t support speech input</string>
+    <string name="error_saving_input">Sorry, there was an error saving your input</string>
 </resources>

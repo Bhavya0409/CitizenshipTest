@@ -19,8 +19,10 @@
         <TextView
             android:id="@+id/fragment_question_text"
             style="@style/QuestionText"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"/>
+
     </LinearLayout>
 
     <FrameLayout
@@ -41,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_margin="12dp">
             <LinearLayout
                 android:id="@+id/answer_choices_user_input_1"
@@ -60,6 +62,12 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:id="@+id/mic_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_mic"/>
 
                 <ImageView
                     android:id="@+id/answer_choices_user_input_1_icon"
@@ -89,6 +97,12 @@
                     android:layout_height="wrap_content"/>
 
                 <ImageView
+                    android:id="@+id/mic_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_mic"/>
+
+                <ImageView
                     android:id="@+id/answer_choices_user_input_2_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -113,6 +127,12 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:id="@+id/mic_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_mic"/>
 
                 <ImageView
                     android:id="@+id/answer_choices_user_input_3_icon"
