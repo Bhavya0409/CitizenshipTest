@@ -12,4 +12,5 @@
     <string name="say_something">Say something</string>
     <string name="device_not_supported">Sorry! Your device doesn\'t support speech input</string>
     <string name="error_saving_input">Sorry, there was an error saving your input</string>
+    <string name="how_many_questions">How many questions would you like?</string>
 </resources>

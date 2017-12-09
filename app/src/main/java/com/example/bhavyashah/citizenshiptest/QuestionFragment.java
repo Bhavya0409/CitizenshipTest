@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -35,7 +36,6 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
     private static final String ONE                   = "one";
     private static final String TWO                   = "two";
     private static final String THREE                 = "three";
-    private static final String QUESTION_TEXT         = "question";
     private static final int    REQ_CODE_SPEECH_INPUT = 100;
 
     @BindView(R.id.fragment_question_number) protected TextView  mQuestionNumber;
@@ -354,7 +354,7 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
     public void onNextClick() {
         count++;
         BaseFragment fragmentToOpen = new QuestionFragment();
-        if (count == HomeFragment.NUM_QUESTIONS) {
+        if (count == HomeFragment.numQuestions) {
             fragmentToOpen = new CompleteFragment();
         }
         BaseFragment.replaceFragmentInActivity(R.id.fragment_container,
