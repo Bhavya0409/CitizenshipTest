@@ -354,7 +354,7 @@ public class Questions {
             case 89:
                 return new String[][]{{"atlantic"}};
             case 90:
-                return new String[][]{{"puerto", "rico"}, {"virgin", "islands"}, {"american", "samoa"}, {"northern", "mariana", "islands", "guam"}};
+                return new String[][]{{"puerto", "rico"}, {"virgin", "islands"}, {"american", "samoa"}, {"northern", "mariana", "islands"}, {"guam"}};
             case 91:
                 return new String[][]{{"maine"}, {"new", "hampshire"}, {"vermont"}, {"new", "york"},
                         {"pennsylvania"}, {"ohio"}, {"michigan"}, {"minnesota"}, {"north", "dakota"}, {"montana"}, {"idaho"}, {"washington"}, {"alaska"}};
