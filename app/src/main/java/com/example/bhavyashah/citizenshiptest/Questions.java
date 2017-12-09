@@ -1,5 +1,9 @@
 package com.example.bhavyashah.citizenshiptest;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Questions {
 
     /**
@@ -291,6 +295,8 @@ public class Questions {
                 return new String[][]{{"american", "indians"}, {"native", "americans"}};
             case 59:
                 return new String[][]{{"africans"}, {"people", "from", "africa"}};
+            case 60:
+                return new String[][]{{"high", "taxes"}, {"army", "stayed", "in", "houses"}, {"boarding"}, {"quartering"}, {"self-government"}};
             case 62:
                 return new String[][]{{"july", "4", "1776"}};
             case 63:
@@ -369,6 +375,196 @@ public class Questions {
                         {"labor"}, {"columbus"}, {"veterans"}, {"thanksgiving"}, {"christmas"}};
             default:
                 return new String[][]{};
+        }
+    }
+
+    public static final List<String> getAnswer(int question) {
+        switch (question) {
+            case 1:
+                return new ArrayList<>(Arrays.asList("Set up the government", "Defines the government", "Protects the basic rights of Americans"));
+            case 2:
+                return new ArrayList<>(Arrays.asList("We the People"));
+            case 3:
+                return new ArrayList<>(Arrays.asList("A change to the Constitution", "An addition to the Constitution"));
+            case 4:
+                return new ArrayList<>(Arrays.asList("The Bill of Rights"));
+            case 5:
+                return new ArrayList<>(Arrays.asList("Speech", "Assembly", "Religion", "Press", "Petition the Government"));
+            case 7:
+                return new ArrayList<>(Arrays.asList("Announce our independence from GB", "Declared our independence from GB", "Said that the US is free from GB"));
+            case 8:
+                return new ArrayList<>(Arrays.asList("Life", "Liberty", "Pursuit of Happiness"));
+            case 9:
+                return new ArrayList<>(Arrays.asList("Freedom of Religion"));
+            case 10:
+                return new ArrayList<>(Arrays.asList("Capitalist Economy", "Market Economy"));
+            case 11:
+                return new ArrayList<>(Arrays.asList("Everyone must follow the law", "Leaders must obey the law", "Government must obey the law", "No one is above the law"));
+            case 12:
+                return new ArrayList<>(Arrays.asList("Congress", "Legislative", "President", "Executive", "The Courts", "Judicial"));
+            case 13:
+                return new ArrayList<>(Arrays.asList("Checks and Balances", "Separation of Powers"));
+            case 14:
+                return new ArrayList<>(Arrays.asList("The President"));
+            case 15:
+                return new ArrayList<>(Arrays.asList("Congress", "Senate and House of Representatives", "(US or national) Legislature"));
+            case 16:
+                return new ArrayList<>(Arrays.asList("Senate", "House of Representatives"));
+            case 19:
+                return new ArrayList<>(Arrays.asList("Cory Booker", "Bob Menendez"));
+            case 22:
+                return new ArrayList<>(Arrays.asList("Frank Pallone", "Leonard Lance", "Bonnie Watson Coleman"));
+            case 24:
+                return new ArrayList<>(Arrays.asList("Because of the state's population", "Because they have more people", "Because some states have more people"));
+            case 26:
+                return new ArrayList<>(Arrays.asList("November"));
+            case 27:
+                return new ArrayList<>(Arrays.asList("Donald J. Trump", "Donald Trump", "Trump"));
+            case 28:
+                return new ArrayList<>(Arrays.asList("Michael R. Pence", "Mike Pence", "Pence"));
+            case 29:
+                return new ArrayList<>(Arrays.asList("Vice President"));
+            case 30:
+                return new ArrayList<>(Arrays.asList("The Speaker of the House"));
+            case 31:
+                return new ArrayList<>(Arrays.asList("The President"));
+            case 32:
+                return new ArrayList<>(Arrays.asList("The President"));
+            case 33:
+                return new ArrayList<>(Arrays.asList("The President"));
+            case 34:
+                return new ArrayList<>(Arrays.asList("Advises the President"));
+            case 35:
+                return new ArrayList<>(Arrays.asList("Secretary of Agriculture", "Secretary of Commerce", "Secretary of Defense",
+                                                     "Secretary of Education", "Secretary of Energy", "Secretary of Health and Human Services",
+                                                     "Secretary of Homeland Security", "Secretary of Housing and Urban Development", "Secretary of the Interior",
+                                                     "Secretary of Labor", "Secretary of State", "Secretary of Transportation", "Secretary of the Treasury",
+                                                     "Secretary of Veterans Affairs", "Attorney General", "Vice President"));
+            case 36:
+                return new ArrayList<>(Arrays.asList("Reviews Laws", "Explains Laws", "Resolves disputes", "Decides if a law goes against the Constitution"));
+            case 37:
+                return new ArrayList<>(Arrays.asList("The Supreme Court"));
+            case 39:
+                return new ArrayList<>(Arrays.asList("John Roberts"));
+            case 40:
+                return new ArrayList<>(Arrays.asList("To print money", "To declare war", "To create an army", "To make treaties"));
+            case 41:
+                return new ArrayList<>(Arrays.asList("Provide schooling and education", "Provide protection", "Provide safety", "Give a driver's license", "Approving zoning and land use"));
+            case 42:
+                return new ArrayList<>(Arrays.asList("Chris Christie", "Phil Murphy"));
+            case 43:
+                return new ArrayList<>(Arrays.asList("Trenton"));
+            case 44:
+                return new ArrayList<>(Arrays.asList("Democrat", "Republican"));
+            case 45:
+                return new ArrayList<>(Arrays.asList("Republican"));
+            case 46:
+                return new ArrayList<>(Arrays.asList("Paul Ryan"));
+            case 47:
+                return new ArrayList<>(Arrays.asList("Citizens 18 and older can vote", "You don't have to pay a poll tax to vote", "Any citizen can vote", "A male citizen of any race can vote"));
+            case 48:
+                return new ArrayList<>(Arrays.asList("Serve on a jury", "Vote in a federal election"));
+            case 49:
+                return new ArrayList<>(Arrays.asList("Vote in a federal election", "Run for federal office"));
+            case 50:
+                return new ArrayList<>(Arrays.asList("Freedom of expression", "Freedom of speech", "Freedom of assembly",
+                                                     "Freedom to petition the government", "Freedom of religion", "The right to bear arms"));
+            case 51:
+                return new ArrayList<>(Arrays.asList("The United State", "The flag"));
+            case 52:
+                return new ArrayList<>(Arrays.asList("Give up loyalty to other countries", "Defend the Constitution and laws of the US",
+                                                     "Obey the laws of the US", "Serve in the US military (if needed)",
+                                                     "Serve the nation", "Be loyal to the US"));
+            case 54:
+                return new ArrayList<>(Arrays.asList("Vote", "Join a political party", "Help with a campaign", "Join a civic group",
+                                                     "Join a community group", "Give an elected official your opinion on an issue",
+                                                     "Call Senators and Representative", "Publicly support or oppose and issue or policy",
+                                                     "Run for office", "Write to a newspaper"));
+            case 57:
+                return new ArrayList<>(Arrays.asList("Freedom", "Political liberty", "Religious Freedom", "Economic opportunity",
+                                                     "Practice their religion", "Escape persecution"));
+            case 58:
+                return new ArrayList<>(Arrays.asList("American Indians", "Native Americans"));
+            case 59:
+                return new ArrayList<>(Arrays.asList("Africans", "People from Africa"));
+            case 60:
+                return new ArrayList<>(Arrays.asList("Because of high taxes", "Because the British army stayed in their houses", "Because they didn't have self-government"));
+            case 62:
+                return new ArrayList<>(Arrays.asList("July 4th, 1776"));
+            case 63:
+                return new ArrayList<>(Arrays.asList("New Hampshire", "Massachusetts", "Rhode Island", "Connecticut", "New York", "New Jersey",
+                                                     "Pennsylvania", "Deleware", "Maryland", "Virginia", "North Carolina", "South Carolina", "Georgia"));
+            case 66:
+                return new ArrayList<>(Arrays.asList("James Madison", "Alexander Hamilton", "John Jay", "Publius"));
+            case 67:
+                return new ArrayList<>(Arrays.asList("US diplomat", "Oldest member of the Constitutional Convention", "First Postmaster General of US",
+                                                     "Writer of Poor Richard's Almanac", "Started first free libraries"));
+            case 68:
+                return new ArrayList<>(Arrays.asList("George Washington"));
+            case 69:
+                return new ArrayList<>(Arrays.asList("George Washington"));
+            case 70:
+                return new ArrayList<>(Arrays.asList("Lousiana"));
+            case 71:
+                return new ArrayList<>(Arrays.asList("War of 1812", "Mexican-American War", "Civil War", "Spanish-American War"));
+            case 72:
+                return new ArrayList<>(Arrays.asList("Civil War", "The War between the States"));
+            case 73:
+                return new ArrayList<>(Arrays.asList("Slavery", "Economic reasons", "State's Rights"));
+            case 74:
+                return new ArrayList<>(Arrays.asList("Freed the slaves", "Saved the Union", "Led US during Civil War"));
+            case 75:
+                return new ArrayList<>(Arrays.asList("Freed the slaves", "Freed slaves in Confederacy", "Freed slaves in the Confederate States", "Freed slaves in most Southern states"));
+            case 76:
+                return new ArrayList<>(Arrays.asList("Fought for women's rights", "Fought for civil rights"));
+            case 77:
+                return new ArrayList<>(Arrays.asList("World War 1", "World War 2", "Korean War", "Vietnam War", "(Persian) Gulf War"));
+            case 78:
+                return new ArrayList<>(Arrays.asList("Woodrow Wilson"));
+            case 79:
+                return new ArrayList<>(Arrays.asList("Franklin Delano Roosevelt"));
+            case 80:
+                return new ArrayList<>(Arrays.asList("Japan", "Germany", "Italy"));
+            case 82:
+                return new ArrayList<>(Arrays.asList("Communism"));
+            case 83:
+                return new ArrayList<>(Arrays.asList("Civil rights (movement)"));
+            case 84:
+                return new ArrayList<>(Arrays.asList("Fought for civil rights", "Worked for equality for all Americans"));
+            case 85:
+                return new ArrayList<>(Arrays.asList("Terrorists attacked the US"));
+            case 86:
+                return new ArrayList<>(Arrays.asList("Cherokee", "Navajo", "Sioux", "Chippewa", "Choctaw", "Pueblo", "Apache", "Iroquois", "Creek",
+                                                     "Blackfeet", "Seminole", "Cheyenne", "Arawak", "Shawnee", "Mohegan", "Huron", "Oneida", "Lakota",
+                                                     "Crow", "Teton", "Hopi", "Inuit"));
+            case 87:
+                return new ArrayList<>(Arrays.asList("Missouri River", "Mississippi River"));
+            case 88:
+                return new ArrayList<>(Arrays.asList("Pacific Ocean"));
+            case 89:
+                return new ArrayList<>(Arrays.asList("Atlantic Ocean"));
+            case 90:
+                return new ArrayList<>(Arrays.asList("Puerto Rico", "Virgin Islands", "American Samoa", "Northern Mariana Islands", "Guam"));
+            case 91:
+                return new ArrayList<>(Arrays.asList("New Hampshire", "Maine", "Vermont", "New York", "Pennysylvania", "Ohio", "Michigan", "Minnesota",
+                                                     "North Dakota", "Montana", "Idaho", "Washington", "Alaska"));
+            case 92:
+                return new ArrayList<>(Arrays.asList("California", "Arizona", "New Mexico", "Texas"));
+            case 93:
+                return new ArrayList<>(Arrays.asList("Washington D.C."));
+            case 94:
+                return new ArrayList<>(Arrays.asList("New York Harbor", "Liberty Island" ,"New Jersey"));
+            case 95:
+                return new ArrayList<>(Arrays.asList("13 original colonies"));
+            case 96:
+                return new ArrayList<>(Arrays.asList("One star for each state", "Each star represents a state", "50 states"));
+            case 97:
+                return new ArrayList<>(Arrays.asList("Star-Spangled Banner"));
+            case 99:
+                return new ArrayList<>(Arrays.asList("New Year's Day", "Martin Luther King Jr. Day", "President's Day", "Memorial Day",
+                                                     "Independence Day", "Labor Day", "Columbus Day", "Veterans Day", "Thanksgiving", "Christmas"));
+            default:
+                return new ArrayList<>();
         }
     }
 

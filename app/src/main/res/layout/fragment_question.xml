@@ -147,4 +147,30 @@
         android:layout_gravity="end"
         android:text="@string/submit"/>
 
+    <TextView
+        android:id="@+id/correct_answer_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/AreYouReady"
+        android:textColor="@color/correct_answer"
+        android:visibility="gone"
+        android:text="Correct!"/>
+
+    <TextView
+        android:id="@+id/incorrect_answer_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/AreYouReady"
+        android:textSize="20sp"
+        android:layout_marginTop="12dp"
+        android:visibility="gone"
+        android:layout_marginStart="12dp"
+        android:text="@string/incorrect_answer_text"/>
+
+    <ListView
+        android:id="@+id/correct_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/QuestionText"/>
+
 </LinearLayout>

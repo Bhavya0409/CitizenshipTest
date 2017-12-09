@@ -23,25 +23,33 @@ import butterknife.OnTextChanged;
 
 public class QuestionFragment extends BaseFragment implements OnItemClickCallback {
 
-    @BindView(R.id.fragment_question_number) TextView mQuestionNumber;
-    @BindView(R.id.fragment_question_text)   TextView mQuestionText;
-    @BindView(R.id.next_button)              Button   mNextButton;
-    @BindView(R.id.submit_button)            Button   mSubmitButton;
+    private static final String ONE = "one";
+    private static final String TWO = "two";
+    private static final String THREE = "three";
 
-    @BindView(R.id.answer_choices_list)       ListView     mChoices;
-    @BindView(R.id.answer_choices_user_input) LinearLayout mUserInputs;
+    @BindView(R.id.fragment_question_number) protected TextView mQuestionNumber;
+    @BindView(R.id.fragment_question_text) protected   TextView mQuestionText;
+    @BindView(R.id.next_button) protected              Button   mNextButton;
+    @BindView(R.id.submit_button) protected            Button   mSubmitButton;
 
-    @BindView(R.id.answer_choices_user_input_1) LinearLayout mUserInput1;
-    @BindView(R.id.answer_choices_user_input_2) LinearLayout mUserInput2;
-    @BindView(R.id.answer_choices_user_input_3) LinearLayout mUserInput3;
+    @BindView(R.id.answer_choices_list) protected       ListView     mChoices;
+    @BindView(R.id.answer_choices_user_input) protected LinearLayout mUserInputs;
 
-    @BindView(R.id.answer_choices_user_input_1_editext) EditText mUserInput1EditText;
-    @BindView(R.id.answer_choices_user_input_2_editext) EditText mUserInput2EditText;
-    @BindView(R.id.answer_choices_user_input_3_editext) EditText mUserInput3EditText;
+    @BindView(R.id.answer_choices_user_input_1) protected LinearLayout mUserInput1;
+    @BindView(R.id.answer_choices_user_input_2) protected LinearLayout mUserInput2;
+    @BindView(R.id.answer_choices_user_input_3) protected LinearLayout mUserInput3;
 
-    @BindView(R.id.answer_choices_user_input_1_icon) ImageView mUserInput1Icon;
-    @BindView(R.id.answer_choices_user_input_2_icon) ImageView mUserInput2Icon;
-    @BindView(R.id.answer_choices_user_input_3_icon) ImageView mUserInput3Icon;
+    @BindView(R.id.answer_choices_user_input_1_editext) protected EditText mUserInput1EditText;
+    @BindView(R.id.answer_choices_user_input_2_editext) protected EditText mUserInput2EditText;
+    @BindView(R.id.answer_choices_user_input_3_editext) protected EditText mUserInput3EditText;
+
+    @BindView(R.id.answer_choices_user_input_1_icon) protected ImageView mUserInput1Icon;
+    @BindView(R.id.answer_choices_user_input_2_icon) protected ImageView mUserInput2Icon;
+    @BindView(R.id.answer_choices_user_input_3_icon) protected ImageView mUserInput3Icon;
+
+    @BindView(R.id.correct_answer_text) protected   TextView mCorrectAnswerText;
+    @BindView(R.id.incorrect_answer_text) protected TextView mIncorrectAnswerText;
+    @BindView(R.id.correct_answer) protected        ListView mCorrectAnswer;
 
     public static int count                         = 0;
     public static int numCorrect                    = 0;
@@ -72,8 +80,15 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
         View view = super.onCreateView(inflater, container, savedInstanceState);
         //TODO refactor to use arraylists and for loops instead of checking isOne, isTwo, isThree everywhere
 
+        if (getArguments() != null) {
+            boolean newQuiz = getArguments().getBoolean(HomeFragment.NEW_QUIZ);
+            if (newQuiz) {
+                count = 0;
+                numCorrect = 0;
+            }
+        }
         mQuestionNumber.setText(String.format(getString(R.string.question_number), count + 1));
-        question = HomeFragment.questionnaire.get(count);
+        question = HomeFragment.mQuestionnaire.get(count);
 
         if (Arrays.asList(Questions.multipleChoiceQuestions).indexOf(question) != -1) {
             questionType = MULTIPLE_CHOICE_QUESTION_TYPE;
@@ -95,13 +110,13 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
 
     @Override
     public void onClick(boolean isCorrect) {
-        enableButton();
+        enableNextButton();
         if (isCorrect) {
             numCorrect++;
         }
     }
 
-    private void enableButton() {
+    private void enableNextButton() {
         mNextButton.setEnabled(true);
         mNextButton.setClickable(true);
         mNextButton.setVisibility(View.VISIBLE);
@@ -176,17 +191,27 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
             }
         }
 
-        updateNumCorrect();
+        setCorrectedText();
     }
 
-    private void updateNumCorrect() {
+    private void setCorrectedText() {
         if (questionType == ONE_ANSWER_QUESTION_TYPE && isOneCorrect) {
-            numCorrect++;
+            setCorrectAnswerData();
         } else if (questionType == TWO_ANSWER_QUESTION_TYPE && isOneCorrect && isTwoCorrect) {
-            numCorrect++;
+            setCorrectAnswerData();
         } else if (questionType == THREE_ANSWER_QUESTION_TYPE && isOneCorrect && isTwoCorrect && isThreeCorrect) {
-            numCorrect++;
+            setCorrectAnswerData();
+        } else {
+            mIncorrectAnswerText.setVisibility(View.VISIBLE);
+            String numQuestions = questionType == ONE_ANSWER_QUESTION_TYPE ? ONE : questionType == TWO_ANSWER_QUESTION_TYPE ? TWO : THREE;
+            mIncorrectAnswerText.setText(String.format(getString(R.string.incorrect_answer_text), numQuestions));
+            mCorrectAnswer.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, Questions.getAnswer(question)));
         }
+    }
+
+    private void setCorrectAnswerData() {
+        numCorrect++;
+        mCorrectAnswerText.setVisibility(View.VISIBLE);
     }
 
     private void setNextButton() {
@@ -265,7 +290,7 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
         mUserInput3EditText.setEnabled(false);
         validateUserInput();
         disableSubmitButton();
-        enableButton();
+        enableNextButton();
     }
 
     @OnTextChanged(R.id.answer_choices_user_input_1_editext)
