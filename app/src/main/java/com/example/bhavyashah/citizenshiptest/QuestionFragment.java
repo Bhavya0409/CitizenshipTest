@@ -220,6 +220,7 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
             setCorrectAnswerData();
         } else {
             mIncorrectAnswerText.setVisibility(View.VISIBLE);
+            MainActivity.textToSpeech.speak(getString(R.string.sorry_that_is_incorrect), TextToSpeech.QUEUE_FLUSH, null, null);
             String numQuestions = questionType == ONE_ANSWER_QUESTION_TYPE ? ONE : questionType == TWO_ANSWER_QUESTION_TYPE ? TWO : THREE;
             mIncorrectAnswerText.setText(String.format(getString(R.string.incorrect_answer_text), numQuestions));
             mCorrectAnswer.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, Questions.getAnswer(question)));
@@ -229,6 +230,7 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
     private void setCorrectAnswerData() {
         numCorrect++;
         mCorrectAnswerText.setVisibility(View.VISIBLE);
+        MainActivity.textToSpeech.speak(getString(R.string.correct), TextToSpeech.QUEUE_FLUSH, null, null);
     }
 
     private void setNextButton() {

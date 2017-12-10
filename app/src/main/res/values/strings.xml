@@ -13,4 +13,6 @@
     <string name="device_not_supported">Sorry! Your device doesn\'t support speech input</string>
     <string name="error_saving_input">Sorry, there was an error saving your input</string>
     <string name="how_many_questions">How many questions would you like?</string>
+    <string name="correct">Correct</string>
+    <string name="sorry_that_is_incorrect">Sorry that is incorrect</string>
 </resources>
