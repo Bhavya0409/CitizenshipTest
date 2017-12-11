@@ -125,6 +125,11 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
         return view;
     }
 
+    /**
+     * Function that is used in the AnswersAdapter to enable button and increment numCorrect if correct
+     *
+     * @param isCorrect if the MC answer is correct
+     */
     @Override
     public void onClick(boolean isCorrect) {
         enableNextButton();
@@ -133,26 +138,42 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
         }
     }
 
+    /**
+     * Enable next button to allow user to move to next question
+     */
     private void enableNextButton() {
         mNextButton.setEnabled(true);
         mNextButton.setClickable(true);
         mNextButton.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Enable submit button to allow user to submit answer for review
+     */
     private void enableSubmitButton() {
         mSubmitButton.setClickable(true);
         mSubmitButton.setEnabled(true);
         mSubmitButton.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Disable submit button
+     */
     private void disableSubmitButton() {
         mSubmitButton.setClickable(false);
         mSubmitButton.setEnabled(false);
         mSubmitButton.setVisibility(View.GONE);
     }
 
+    /**
+     * Function to determine if an answer has all required keywords
+     *
+     * @param input User's answer
+     * @return Whether or not the answer has all valid keywords
+     */
     private boolean validateKeywords(String input) {
         for (int set = 0; set < keywords.length; set++) {
+            //count is used to determine how many keywords from the list are a part of the user's input
             int count = 0;
             for (int j = 0; j < keywords[set].length; j++) {
                 String keyword = keywords[set][j];
@@ -160,13 +181,18 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
                     count++;
                 }
             }
+            //if count equals the amount of keywords in the array, all the keywords have been inputted and should return true
             if (count == keywords[set].length) {
                 return true;
             }
         }
+        //if input does not match any array of keywords, return false
         return false;
     }
 
+    /**
+     * Validate keywords for each edit text that is present
+     */
     private void validateUserInput() {
         keywords = Questions.getKeywords(question);
         mUserInput1Icon.setVisibility(View.VISIBLE);
@@ -211,6 +237,9 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
         setCorrectedText();
     }
 
+    /**
+     * Determine what to do whether the question has been answered correctly or not
+     */
     private void setCorrectedText() {
         if (questionType == ONE_ANSWER_QUESTION_TYPE && isOneCorrect) {
             setCorrectAnswerData();
@@ -219,6 +248,7 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
         } else if (questionType == THREE_ANSWER_QUESTION_TYPE && isOneCorrect && isTwoCorrect && isThreeCorrect) {
             setCorrectAnswerData();
         } else {
+            //if the answer is incorrect, show the correct answers in the listview
             mIncorrectAnswerText.setVisibility(View.VISIBLE);
             MainActivity.textToSpeech.speak(getString(R.string.sorry_that_is_incorrect), TextToSpeech.QUEUE_FLUSH, null, null);
             String numQuestions = questionType == ONE_ANSWER_QUESTION_TYPE ? ONE : questionType == TWO_ANSWER_QUESTION_TYPE ? TWO : THREE;
@@ -227,12 +257,18 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
         }
     }
 
+    /**
+     * If the user answered the entire question correctly, execute this function
+     */
     private void setCorrectAnswerData() {
         numCorrect++;
         mCorrectAnswerText.setVisibility(View.VISIBLE);
         MainActivity.textToSpeech.speak(getString(R.string.correct), TextToSpeech.QUEUE_FLUSH, null, null);
     }
 
+    /**
+     * If all inputs have data, allow the user to submit their answer; otherwise, disable the submit button
+     */
     private void setNextButton() {
         if (questionType == ONE_ANSWER_QUESTION_TYPE) {
             if (isOneValid) {
@@ -255,6 +291,11 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
         }
     }
 
+    /**
+     * Determine what to show to the user (adapter for MC questions and edittexts for custom user input)
+     *
+     * @param questionType which kind of question it is
+     */
     private void setAnswerSection(int questionType) {
         if (questionType == MULTIPLE_CHOICE_QUESTION_TYPE) {
             mChoices.setVisibility(View.VISIBLE);
@@ -289,6 +330,11 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
         }
     }
 
+    /**
+     * Open mic intent for voice input
+     *
+     * @param view which mic icon was tapped
+     */
     @OnClick({R.id.mic_1, R.id.mic_2, R.id.mic_3})
     public void onMicClick(View view) {
         if (MainActivity.textToSpeech.isSpeaking()) {
@@ -323,6 +369,13 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
         }
     }
 
+    /**
+     * Populate edit text with user's answers after coming back from the voice input
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -352,6 +405,9 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
         }
     }
 
+    /**
+     * Advance user to next question, or completion fragment if the test is over
+     */
     @OnClick(R.id.next_button)
     public void onNextClick() {
         count++;
@@ -365,6 +421,9 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
                                                fragmentToOpen.getClass().getSimpleName());
     }
 
+    /**
+     * When user clicks submit button, disable further editing, validate user input, and enable the next button
+     */
     @OnClick(R.id.submit_button)
     public void onSubmitClick() {
         mUserInput1EditText.setEnabled(false);
@@ -378,6 +437,11 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
         enableNextButton();
     }
 
+    /**
+     * Validate user input for first edit text
+     *
+     * @param text
+     */
     @OnTextChanged(R.id.answer_choices_user_input_1_editext)
     public void onInput1Changed(CharSequence text) {
         if (!TextUtils.isEmpty(text) && text.toString().trim().length() > 0) {
@@ -388,6 +452,11 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
         setNextButton();
     }
 
+    /**
+     * Validate user input for first edit text
+     *
+     * @param text
+     */
     @OnTextChanged(R.id.answer_choices_user_input_2_editext)
     public void onInput2Changed(CharSequence text) {
         if (!TextUtils.isEmpty(text) && text.toString().trim().length() > 0) {
@@ -398,6 +467,11 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
         setNextButton();
     }
 
+    /**
+     * Validate user input for first edit text
+     *
+     * @param text
+     */
     @OnTextChanged(R.id.answer_choices_user_input_3_editext)
     public void onInput3Changed(CharSequence text) {
         if (!TextUtils.isEmpty(text) && text.toString().trim().length() > 0) {
