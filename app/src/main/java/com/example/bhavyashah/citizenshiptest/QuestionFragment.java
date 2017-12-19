@@ -94,6 +94,7 @@ public class QuestionFragment extends BaseFragment implements OnItemClickCallbac
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
         //TODO refactor to use arraylists and for loops instead of checking isOne, isTwo, isThree everywhere
+        //TODO refactor to use the same fragment instead of multiple fragments
 
         if (getArguments() != null) {
             boolean newQuiz = getArguments().getBoolean(HomeFragment.NEW_QUIZ);
